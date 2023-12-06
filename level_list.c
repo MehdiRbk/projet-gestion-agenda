@@ -118,6 +118,7 @@ t_level_list createSorted2NLevelList(int n)
     return MyLevelList;
 
 }
+
 int searchValInFirstLevel(t_level_list MyLevelList,int val)
 {
     p_level_cell temp=MyLevelList.heads[0];
@@ -125,20 +126,43 @@ int searchValInFirstLevel(t_level_list MyLevelList,int val)
     {
         if (temp->value==val)
         {
-            return 1;
+            return temp;
         }
         temp=temp->next[0];
     }
-    return 0;
+    return NULL;
 }
 
-int searchValInList(t_level_list MyLevelList,int val)
+int FindLevelWhereHeadLevelValueInfSearchValue(int val, t_level_list MyLevelList)
 {
-    int max_level = MyLevelList.max_level;
-    p_level_cell temp = MyLevelList.heads[max_level-1];
-    p_level_cell  prev = temp;
-    for(int i = 0;i<max_level-1;i++)
+    for (int i = MyLevelList.max_level; i>0;i--)
     {
-        
+        if (MyLevelList.heads[i]->value<=val)
+        {
+            return i;
+        }
     }
+    return 1;
+
+}
+
+p_level_cell searchValInList(t_level_list MyLevelList,int val)
+{
+    int level = FindLevelWhereHeadLevelValueInfSearchValue(val,MyLevelList);
+    p_level_cell temp = MyLevelList.heads[level];
+    p_level_cell prev = temp;
+    while(level>0)
+    {
+        if(temp->value == val)
+            return temp;
+        level--;
+        if(temp->value > val){
+            temp = prev;
+            level--;
+        }
+        if(temp->value < val){
+            temp = temp->next[level-1];
+        }
+    }
+    return NULL;
 }

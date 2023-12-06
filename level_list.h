@@ -23,7 +23,8 @@ void addHeadLevelList(t_level_list* MyLevelList,p_level_cell MyLevelCell);
 void displayLevel(t_level_list MyLevelList,int level);
 void displayLevelList(t_level_list MyLevelList);
 void addOrderLevelList(t_level_list* MyLevelList,p_level_cell MyLevelCell);
-int searchValInFirstLevel(t_level_list MyLevelList,int val);
-int searchValInList(t_level_list MyLevelList,int val);
+p_level_cell searchValInFirstLevel(t_level_list MyLevelList,int val);
+int FindLevelWhereHeadLevelValueInfSearchValue(int value, t_level_list MyLevelList);
+p_level_cell searchValInList(t_level_list MyLevelList,int val);
 t_level_list createSorted2NLevelList(int n);
 #endif //PROJET2_GESTION_AGENDA_LEVEL_LIST_H
