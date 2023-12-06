@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "level_list.h"
+#include "math.h"
 
 p_level_cell createLevelCell(int val, int nbr_level){
     p_level_cell MyLevelCell = malloc(sizeof(t_level_cell));
@@ -93,6 +94,30 @@ void displayLevelList(t_level_list MyLevelList){
     }
 }
 
+t_level_list createSorted2NLevelList(int n)
+{
+    t_level_list MyLevelList = createLevelList(n);
+    int nbr_elem = pow(2,n)-1;
+    int* levels = malloc(nbr_elem*sizeof(int));
+    for (int i=0;i<nbr_elem;i++)
+    {
+        levels[i]=1;
+    }
+    for (int y=0;y<n-1;y++) // on recommence pour faire le nombre max de level
+    {
+        for (int z=0;z<nbr_elem;z++) // on recommence pour le nombre total d'éléments
+        {
+            if((z+1) % (int) pow(2,y+1) ==0) //permet de voir si l'index est un modulo pour chaque puissance de 2
+                levels[z]++;
+        }
+    }
+    for (int i=0;i<nbr_elem;i++){
+        p_level_cell new_cell = createLevelCell(i+1,levels[i]);
+        addOrderLevelList(&MyLevelList,new_cell);
+    }
+    return MyLevelList;
+
+}
 int searchValInFirstLevel(t_level_list MyLevelList,int val)
 {
     p_level_cell temp=MyLevelList.heads[0];
@@ -110,7 +135,7 @@ int searchValInFirstLevel(t_level_list MyLevelList,int val)
 int searchValInList(t_level_list MyLevelList,int val)
 {
     int max_level = MyLevelList.max_level;
-    p_level_cell temp = MyLevelList.heads[max_level];
+    p_level_cell temp = MyLevelList.heads[max_level-1];
     p_level_cell  prev = temp;
     for(int i = 0;i<max_level-1;i++)
     {

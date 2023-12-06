@@ -25,5 +25,5 @@ void displayLevelList(t_level_list MyLevelList);
 void addOrderLevelList(t_level_list* MyLevelList,p_level_cell MyLevelCell);
 int searchValInFirstLevel(t_level_list MyLevelList,int val);
 int searchValInList(t_level_list MyLevelList,int val);
-
+t_level_list createSorted2NLevelList(int n);
 #endif //PROJET2_GESTION_AGENDA_LEVEL_LIST_H
