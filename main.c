@@ -21,10 +21,15 @@ int main() {
     p_level_cell new_cell7 = createLevelCell(31,2);
     addOrderLevelList(&MyLevelList,new_cell7);
     displayLevelList(MyLevelList);*/
-    t_level_list MyLevelList = createSorted2NLevelList(7);
+    t_level_list MyLevelList = createSorted2NLevelList(4);
     displayLevelList(MyLevelList);
-    //int bool = searchValInFirstLevel(MyLevelList,150);
+    p_level_cell find= searchValInFirstLevel(MyLevelList,1);
+    if( find !=NULL)
+    {
+        printf("FIND");
+    }
+    else
+        printf("NOT FIND");
     //printf("%d",bool);
-    scanf("%d");
     return 0;
 }

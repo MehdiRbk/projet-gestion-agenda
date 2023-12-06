@@ -119,7 +119,7 @@ t_level_list createSorted2NLevelList(int n)
 
 }
 
-int searchValInFirstLevel(t_level_list MyLevelList,int val)
+p_level_cell searchValInFirstLevel(t_level_list MyLevelList,int val)
 {
     p_level_cell temp=MyLevelList.heads[0];
     while(temp!=NULL)
