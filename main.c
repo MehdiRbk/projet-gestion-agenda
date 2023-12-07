@@ -9,33 +9,41 @@ int main() {
     /*
     t_level_list MyLevelList = createLevelList(5);
     displayLevelList(MyLevelList);
-    p_level_cell MyLevelCell = createLevelCell(18,4);
-    addHeadLevelList(&MyLevelList,MyLevelCell);
+    //Ajout en tête de liste
+    addHeadLevelList(&MyLevelList,createLevelCell(18,3));
     displayLevelList(MyLevelList);
-    p_level_cell new_cell2 = createLevelCell(25,1);
-    addOrderLevelList(&MyLevelList,new_cell2);
+
+    addHeadLevelList(&MyLevelList,createLevelCell(12,4));
     displayLevelList(MyLevelList);
-    p_level_cell new_cell3 = createLevelCell(32,5);
-    addOrderLevelList(&MyLevelList,new_cell3);
+
+    addHeadLevelList(&MyLevelList,createLevelCell(19,1));
     displayLevelList(MyLevelList);
-    p_level_cell new_cell4 = createLevelCell(91,3);
-    addOrderLevelList(&MyLevelList,new_cell4);
+
+    addHeadLevelList(&MyLevelList,createLevelCell(90,8));
     displayLevelList(MyLevelList);
-    p_level_cell new_cell5 = createLevelCell(59,1);
-    addOrderLevelList(&MyLevelList,new_cell5);
-    displayLevelList(MyLevelList);
-    p_level_cell new_cell6 = createLevelCell(59,5);
-    addOrderLevelList(&MyLevelList,new_cell6);
-    displayLevelList(MyLevelList);
-    p_level_cell new_cell7 = createLevelCell(31,2);
-    addOrderLevelList(&MyLevelList,new_cell7);
-    displayLevelList(MyLevelList);
-    p_level_cell new_cell8 = createLevelCell(15,5);
-    addOrderLevelList(&MyLevelList,new_cell8);
-    displayLevelList(MyLevelList);
-    p_level_cell new_cell9 = createLevelCell(12,1);
-    addOrderLevelList(&MyLevelList,new_cell9);
-    displayLevelList(MyLevelList);
+
+
+    //Ajout en ordre croissant
+    t_level_list MyLevelList2 = createLevelList(8);
+    displayLevelList(MyLevelList2);
+    addOrderLevelList(&MyLevelList2,createLevelCell(20,5));
+    displayLevelList(MyLevelList2);
+
+    addOrderLevelList(&MyLevelList2,createLevelCell(35,2));
+    displayLevelList(MyLevelList2);
+
+    addOrderLevelList(&MyLevelList2,createLevelCell(10,3));
+    displayLevelList(MyLevelList2);
+
+    addOrderLevelList(&MyLevelList2, createLevelCell(25,1));
+    displayLevelList(MyLevelList2);
+
+    addOrderLevelList(&MyLevelList2,createLevelCell(59,9));
+    displayLevelList(MyLevelList2);
+
+    addOrderLevelList(&MyLevelList2,createLevelCell(1,8));
+    displayLevelList(MyLevelList2);
+    */
 
     t_level_list MyLevelList = createSorted2NLevelList(4);
     displayLevelList(MyLevelList);
@@ -55,7 +63,7 @@ int main() {
     int level=7;
     char *time_lvl0;
     char *time_all_levels;
-    while (level <=15)
+    while (level <=20)
     {
         t_level_list test_list = createSorted2NLevelList(level);
         startTimer();
@@ -82,7 +90,7 @@ int main() {
     }
     fclose(log_file);
 
-    */
+    /*
     int start = 1;
     while(start)
     {
@@ -105,6 +113,6 @@ int main() {
            test_timesearch();
         }
     }
-
+    */
     return 0;
 }

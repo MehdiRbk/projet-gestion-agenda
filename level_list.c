@@ -29,9 +29,9 @@ t_level_list createLevelList(int max_level){
 //Ajoute une cellule en tête de la level liste
 void addHeadLevelList(t_level_list* MyLevelList,p_level_cell MyLevelCell){
     int nbr_level = MyLevelCell->level;
-    if (nbr_level < MyLevelCell->level)
+    if (nbr_level > MyLevelList->max_level) // On vérifie si le level de la cellule est supérieure au level max
     {
-        printf("The number of level cell is bigger than the number of level list");
+        printf("The number of level cell is bigger than the number of level list\n");
         return;
     }
     for (int i = 0; i < nbr_level; i++) { // Parcourir les niveaux et mettre à jour les pointeurs de tête
@@ -43,6 +43,12 @@ void addHeadLevelList(t_level_list* MyLevelList,p_level_cell MyLevelCell){
 void addOrderLevelList(t_level_list* MyLevelList,p_level_cell MyLevelCell){
     int nbr_level = MyLevelCell->level;
     int val_cell = MyLevelCell->value;
+
+    if (nbr_level > MyLevelList->max_level) // On vérifie si le level de la cellule est supérieure au level max
+    {
+        printf("The number of level cell is bigger than the number of level list\n");
+        return;
+    }
     //On vérifie si la liste nest pas vide ou si la valeur de la première cellule n'est pas inférieure à notre cellule qu'on ajoute
     //dans ces cas, on ajoute la cellule en tête de liste
     if(MyLevelList->heads[0]==NULL || val_cell < MyLevelList->heads[0]->value){ // si la liste est vide ajoute la cellule en tête
@@ -173,3 +179,4 @@ p_level_cell searchValInList(t_level_list MyLevelList,int val)
     }
     return NULL; //retourne NULL si la valeur n'a pas été trouvé
 }
+
