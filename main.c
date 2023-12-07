@@ -63,9 +63,10 @@ int main() {
     int level=7;
     char *time_lvl0;
     char *time_all_levels;
+    t_level_list test_list;
     while (level <=15)
     {
-        t_level_list test_list = createSorted2NLevelList(level);
+        test_list= createSorted2NLevelList(level);
         startTimer();
         max = (int) pow(2,level)-1;
         for (int i = 0; i< 100000;i++)
