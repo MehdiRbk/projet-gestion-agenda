@@ -43,7 +43,7 @@ int main() {
 
     addOrderLevelList(&MyLevelList2,createLevelCell(1,8));
     displayLevelList(MyLevelList2);
-    */
+
 
     t_level_list MyLevelList = createSorted2NLevelList(4);
     displayLevelList(MyLevelList);
@@ -54,7 +54,7 @@ int main() {
     }
     else
         printf("NOT FIND");
-
+    */
     //code pour calculer le temps de chaque recherche.
     int random_value,max;
     p_level_cell findcell;
@@ -63,7 +63,7 @@ int main() {
     int level=7;
     char *time_lvl0;
     char *time_all_levels;
-    while (level <=20)
+    while (level <=15)
     {
         t_level_list test_list = createSorted2NLevelList(level);
         startTimer();
