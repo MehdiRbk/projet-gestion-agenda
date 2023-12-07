@@ -3,7 +3,6 @@
 #include <math.h>
 #include "level_list.h"
 #include "timer.h"
-#include "test.h"
 
 int main() {
     /*
