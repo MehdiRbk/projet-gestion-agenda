@@ -37,10 +37,10 @@ typedef struct s_appointment_list{
     t_level_cell* head;
 }t_appointment_list;
 
-typedef struct s_schedule {
+typedef struct s_contact_schedule {
     t_contact contact;
-    t_appointment_list *appointment;
-}t_enter_schedule;
+    t_appointment_list * appointment;
+}t_contact_schedule;
 
 typedef struct s_schedule_cell{
     char* pseudo;
@@ -53,9 +53,14 @@ typedef struct s_schedule_list{
     int max_level;
 };
 
-char *scanString(void);
-void display_appointment();
-t_contact* createContact();
-void displayContact(t_contact);
-t_date createDate();
+char scanString(void);
+t_contact createContact();
+void displayContactAppointment(t_contact_schedule);
+t_date insertDate();
+t_hour insertHour();
+t_appointment createAppointment();
+t_contact_schedule createEnterSchedule();
+t_appointment_cell* createAppointmentCell();
+void insertNewAppointmentforContact(t_contact_schedule* contactSchedule);
+
 #endif //PROJET2_GESTION_AGENDA_SCHEDULE_H

@@ -40,39 +40,87 @@ char* scanString(void){
     return tab;
 }
 
-t_contact* createContact(){
-    t_contact * newcontact = malloc(sizeof(t_contact));
+t_contact createContact(){
+    t_contact  newcontact;
     printf("Entrez le prénom et nom du contact en format 'Prénom Nom' : ");
-    newcontact->surname_name = scanString();
+    newcontact.surname_name = scanString();
     return newcontact;
 }
 
 
-void displayContact(t_contact contact){
-    printf("Contact : %s", contact.surname_name);
+void displayContactAppointment(t_contact_schedule contactSchedule){
+    t_appointment_cell * temp = contactSchedule.appointment->head;
+    int i = 1;
+    while(temp != NULL){
+        printf("Rendez vous %d :\n Date : %d/%d/%d \n",i++,temp->appointment.date_appointment.day,temp->appointment.date_appointment.month,temp->appointment.date_appointment.year);
+        printf("Heure de début : %d h %d \n",temp->appointment.hour_appointment.hour,temp->appointment.hour_appointment.minute);
+        printf("Durée : %d h %d \n",temp->appointment.duration.hour,temp->appointment.duration.minute);
+        printf("Objet : %s \n", temp->appointment.object);
+        temp = temp->next;
+    }
+
 }
 
-
-
-t_date createDate(){
+t_date insertDate(){
     t_date date;
-    int day, month, year;
     do {
         printf("\nEntrez l'annee du rendez-vous (2024 , 2025 , ...) : ");
-        year =;
-    }while(year<0);
+        scanf("%d",&date.year);
+    }while(date.year<2023);
     do {
         printf("\nEntrez le mois du rendez-vous (1 , 2 , ...) : ");
-        month=;
-    }while(month<1 || month>12);
+        scanf("%d",&date.month);
+    }while(date.month<1 || date.month>12);
     do {
         printf("\nEntrez le jour du rendez-vous (1 , 2 , ...) : ");
-        day=;
-    }while((day<1) || (day>31) || ((year%4==0) && (day>29) && (month==2)) || ((year%4!=0) && (day>28) && (month==2)));
-    date.year=year;
-    date.month=month;
-    date.day=day;
+        scanf("%d",&date.day);
+    }while((date.day<1) || (date.day>31) || ((date.year%4==0) && (date.day>29) && (date.month==2)) || ((date.year%4!=0) && (date.day>28) && (date.month==2)));
     return date;
 }
 
+t_hour insertHour(){
+    t_hour hour;
+    do{
+        printf("\nEntrez l'heure du rendez-vous (1 , 2 , ...) : ");
+        scanf("%d",&hour.hour);
+    }while(hour.hour < 0 || hour.hour > 24);
+    do{
+        printf("\nEntrez les minutes du rendez-vous (1 , 2 , ...) : ");
+        scanf("%d",&hour.minute);
+    }while(hour.minute < 0 || hour.minute > 60);
+    return hour;
+}
 
+t_appointment createAppointment()
+{
+    t_appointment newAppointment;
+    newAppointment.date_appointment=insertDate();
+    newAppointment.hour_appointment=insertHour();
+    newAppointment.duration=insertHour();
+    printf("Insérer l'objet du rendez-vous :");
+    newAppointment.object = scanString();
+    return newAppointment;
+}
+
+t_contact_schedule* createContactSchedule()
+{
+    t_contact_schedule* newContactSchedule = malloc(sizeof(t_contact_schedule));
+    newContactSchedule->contact = createContact();
+    newContactSchedule->appointment = malloc(sizeof(t_appointment_list));
+    newContactSchedule->appointment->head=NULL;
+    return newContactSchedule;
+}
+
+t_appointment_cell* createAppointmentCell(){
+    t_appointment_cell* newAppointmentCell = malloc(sizeof(t_appointment_cell));
+    newAppointmentCell->appointment = createAppointment();
+    newAppointmentCell->next = NULL;
+}
+void insertNewAppointmentforContact(t_contact_schedule* contactSchedule)
+{
+    t
+    if(contactSchedule->appointment->head == NULL)
+    {
+
+    }
+}
