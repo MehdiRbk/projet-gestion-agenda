@@ -5,6 +5,10 @@
 #include "timer.h"
 #include "schedule.h"
 int main() {
-
+    t_contact_schedule *marco = createContactSchedule();
+    insertNewAppointmentforContact(marco);
+    displayContactAppointment(*marco);
+    insertNewAppointmentforContact(marco);
+    displayContactAppointment(*marco);
     return 0;
 }

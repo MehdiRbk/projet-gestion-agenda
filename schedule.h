@@ -29,7 +29,7 @@ typedef struct s_appointment{
 
 typedef struct s_appointment_cell{
     t_appointment appointment;
-    struct s_appointment_list* next;
+    struct s_appointment_cell* next;
 }t_appointment_cell;
 
 typedef struct s_appointment_list{
@@ -50,7 +50,7 @@ typedef struct s_schedule_cell{
 typedef struct s_schedule_list{
     t_schedule_cell* head;
     int max_level;
-};
+}t_schedule_list;
 
 char * scanString(void);
 t_contact createContact();
@@ -58,7 +58,7 @@ void displayContactAppointment(t_contact_schedule);
 t_date insertDate();
 t_hour insertHour();
 t_appointment createAppointment();
-t_contact_schedule createEnterSchedule();
+t_contact_schedule* createContactSchedule();
 t_appointment_cell* createAppointmentCell();
 void insertNewAppointmentforContact(t_contact_schedule* contactSchedule);
 

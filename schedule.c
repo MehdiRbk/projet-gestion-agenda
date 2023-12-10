@@ -17,13 +17,13 @@ char* scanString(void){ //Permet de renvoyer un tableau de caractère de la tail
 
     if (tab == NULL) // on vérifie que le malloc à bien marcher
     {
-        printf("Erreur d'allocation de mémoire !\\n");
+        printf("Erreur d'allocation de memoire !\\n");
         return NULL;
     }
 
     while((c = getchar()) != '\n'){ //Tant que le caractère n'est pas un retour à la ligne (touche entrée) on continue
         if(lenght == max){ //On vérifie que la taille physique n'est pas atteinte
-            printf("Trop de caractère !\n");
+            printf("Trop de caractere !\n");
             return tab;
         }
         tab[lenght++] = c;
@@ -34,7 +34,7 @@ char* scanString(void){ //Permet de renvoyer un tableau de caractère de la tail
 
     if (tab == NULL) //On vérifie que le realloc a bien marché
     {
-        printf("Erreur de réallocation de mémoire!\n");
+        printf("Erreur de reallocation de memoire!\n");
         return NULL;
     }
     return tab;
@@ -42,7 +42,7 @@ char* scanString(void){ //Permet de renvoyer un tableau de caractère de la tail
 
 t_contact createContact(){ // Créer et renvoie un contact en demandant le prénom et le nom
     t_contact  newcontact;
-    printf("Entrez le prénom et nom du contact en format 'Prénom Nom' : ");
+    printf("Entrez le prenom et nom du contact en format 'Prenom Nom' : ");
     newcontact.surname_name = scanString();
     return newcontact;
 }
@@ -51,11 +51,12 @@ t_contact createContact(){ // Créer et renvoie un contact en demandant le prén
 void displayContactAppointment(t_contact_schedule contactSchedule){ //Affiche tous les rendez-vous d'un contact
     t_appointment_cell * temp = contactSchedule.appointment->head;
     int i = 1;
+    printf("Rendez-vous de %s\n\n",contactSchedule.contact.surname_name);
     while(temp != NULL){
-        printf("Rendez vous %d :\n Date : %d/%d/%d \n",i++,temp->appointment.date_appointment.day,temp->appointment.date_appointment.month,temp->appointment.date_appointment.year);
-        printf("Heure de début : %d h %d \n",temp->appointment.hour_appointment.hour,temp->appointment.hour_appointment.minute);
-        printf("Durée : %d h %d \n",temp->appointment.duration.hour,temp->appointment.duration.minute);
-        printf("Objet : %s \n", temp->appointment.object);
+        printf("Rendez vous %d :\nDate : %d/%d/%d \n",i++,temp->appointment.date_appointment.day,temp->appointment.date_appointment.month,temp->appointment.date_appointment.year);
+        printf("Heure de debut : %d h %d \n",temp->appointment.hour_appointment.hour,temp->appointment.hour_appointment.minute);
+        printf("Duree : %d h %d \n",temp->appointment.duration.hour,temp->appointment.duration.minute);
+        printf("Objet : %s \n\n", temp->appointment.object);
         temp = temp->next;
     }
 }
@@ -63,15 +64,15 @@ void displayContactAppointment(t_contact_schedule contactSchedule){ //Affiche to
 t_date insertDate(){ //Demande à l'utilisateur d'entrer une date valide
     t_date date;
     do {
-        printf("\nEntrez l'annee du rendez-vous (2024 , 2025 , ...) : ");
+        printf("Entrez l'annee du rendez-vous: \n");
         scanf("%d",&date.year);
     }while(date.year<2023);
     do {
-        printf("\nEntrez le mois du rendez-vous (1 , 2 , ...) : ");
+        printf("Entrez le mois du rendez-vous: \n");
         scanf("%d",&date.month);
     }while(date.month<1 || date.month>12);
     do {
-        printf("\nEntrez le jour du rendez-vous (1 , 2 , ...) : ");
+        printf("Entrez le jour du rendez-vous  : \n");
         scanf("%d",&date.day);
     }while((date.day<1) || (date.day>31) || ((date.year%4==0) && (date.day>29) && (date.month==2)) || ((date.year%4!=0) && (date.day>28) && (date.month==2)));
     return date;
@@ -80,11 +81,11 @@ t_date insertDate(){ //Demande à l'utilisateur d'entrer une date valide
 t_hour insertHour(){ //Demande à l'utilisateur d'entrer une heure valide
     t_hour hour;
     do{
-        printf("\nEntrez l'heure du rendez-vous (1 , 2 , ...) : ");
+        printf("Entrez l'heure: \n");
         scanf("%d",&hour.hour);
     }while(hour.hour < 0 || hour.hour > 24);
     do{
-        printf("\nEntrez les minutes du rendez-vous (1 , 2 , ...) : ");
+        printf("Entrez les minutes: \n");
         scanf("%d",&hour.minute);
     }while(hour.minute < 0 || hour.minute > 60);
     return hour;
@@ -93,11 +94,13 @@ t_hour insertHour(){ //Demande à l'utilisateur d'entrer une heure valide
 t_appointment createAppointment() //Créer et renvoie un rendez-vous
 {
     t_appointment newAppointment;
-    newAppointment.date_appointment=insertDate();
-    newAppointment.hour_appointment=insertHour();
-    newAppointment.duration=insertHour();
-    printf("Insérer l'objet du rendez-vous :");
+    printf("Veuillez inserer l'objet du rendez-vous :\n");
     newAppointment.object = scanString();
+    newAppointment.date_appointment=insertDate();
+    printf("Veuillez inserer l'heure du rendez-vous :\n");
+    newAppointment.hour_appointment=insertHour();
+    printf("Veuillez inserer la durée du rendez-vous :\n");
+    newAppointment.duration=insertHour();
     return newAppointment;
 }
 
