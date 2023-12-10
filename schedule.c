@@ -13,7 +13,7 @@
 char* scanString(void){ //Permet de renvoyer un tableau de caractère de la taille exact de la phrase entrer
     int lenght = 0; //taille logique du tableau
     int max = 100; //taille physique du tableau
-    char c;
+    char c ;
     char* tab = malloc(max * sizeof(char));
 
     if (tab == NULL) // on vérifie que le malloc à bien marcher
@@ -21,7 +21,7 @@ char* scanString(void){ //Permet de renvoyer un tableau de caractère de la tail
         printf("Erreur d'allocation de memoire !\\n");
         return NULL;
     }
-
+    scanf("%c",&c); //évite les bugs
     while((c = getchar()) != '\n'){ //Tant que le caractère n'est pas un retour à la ligne (touche entrée) on continue
         if(lenght == max){ //On vérifie que la taille physique n'est pas atteinte
             printf("Trop de caractere !\n");
@@ -104,7 +104,7 @@ void insertNewAppointmentforContact(t_contact_schedule* contactSchedule) //Perme
     }
 }
 
-t_schedule_cell * createScheduleCell(int nbr_level, t_contact_schedule *contactSchedule)
+t_schedule_cell * createScheduleCell(int nbr_level, t_contact_schedule *contactSchedule) //Créer et renvoie une cellule d'un agenda avec le contact
 {
     t_schedule_cell* newScheduleCell = malloc(sizeof(t_schedule_cell));
     newScheduleCell->level = nbr_level;
@@ -114,7 +114,7 @@ t_schedule_cell * createScheduleCell(int nbr_level, t_contact_schedule *contactS
     return newScheduleCell;
 }
 
-void deleteAppointment(t_contact_schedule* contactSchedule, int nbrAppointment)
+void deleteAppointment(t_contact_schedule* contactSchedule, int nbrAppointment) //Permet de supprimer un rendez-vous selon son numéro
 {
     t_appointment_cell *temp = contactSchedule->appointment->head;
     if(contactSchedule->appointment->head==NULL)
@@ -144,7 +144,7 @@ void deleteAppointment(t_contact_schedule* contactSchedule, int nbrAppointment)
     free(suppCell);
 }
 
-char* createPseudo(char* str) {
+char* createPseudo(char* str) { //Permet de créer le pseudo sous la forme nom_prenom
     if (str == NULL || *str == '\0') {
         return NULL;
     }
@@ -177,7 +177,7 @@ char* createPseudo(char* str) {
     return str;
 }
 
-void InsertCellOrderInScheduleList(t_schedule_list myScheduleList,t_schedule_cell *MyScheduleCell) {
+void InsertCellOrderInScheduleList(t_schedule_list myScheduleList,t_schedule_cell *MyScheduleCell) { //Permet d'insérer une cell dans la liste en ordre alphabétique
     if (myScheduleList.head == NULL) {
         myScheduleList.head = MyScheduleCell;
         return;
@@ -186,7 +186,7 @@ void InsertCellOrderInScheduleList(t_schedule_list myScheduleList,t_schedule_cel
     t_schedule_cell *temp, *prev;
     temp = myScheduleList.head;
 
-    while (temp != NULL && strcmp(temp->pseudo, MyScheduleCell->pseudo) < 0) {
+    while (temp != NULL && strcmp(temp->pseudo, MyScheduleCell->pseudo) < 0) { //Vérifie l'ordre alphabétique
         prev = temp;
         temp = temp->next[0];
     }
@@ -194,7 +194,7 @@ void InsertCellOrderInScheduleList(t_schedule_list myScheduleList,t_schedule_cel
     prev->next[0] = MyScheduleCell;
 }
 
-t_schedule_list createScheduleList()
+t_schedule_list createScheduleList() //Créer une liste de Schedule
 {
     t_schedule_list list;
     list.head =NULL;

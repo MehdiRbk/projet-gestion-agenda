@@ -15,10 +15,12 @@ int main() {
         printf("2 - test PARTIE 3\n");
         printf("0 - quit\n");
         scanf("%d",&start);
-        if (start ==2){
+        if (start ==1){
             testpart1and2();
         }
-        if (choix)
+        if (start==2){
+            testpart3();
+        }
     }
     return 0;
 }

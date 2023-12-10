@@ -11,6 +11,7 @@
 #import "schedule.h"
 
 void testpart1and2(){
+    printf("Ajout en tête de liste\n");
     t_level_list MyLevelList = createLevelList(5);
     displayLevelList(MyLevelList);
 
@@ -26,7 +27,7 @@ void testpart1and2(){
     addHeadLevelList(&MyLevelList,createLevelCell(90,8));
     displayLevelList(MyLevelList);
 
-
+    printf("Ajout en ordre croissant\n");
     //Ajout en ordre croissant
     t_level_list MyLevelList2 = createLevelList(8);
     displayLevelList(MyLevelList2);
@@ -48,7 +49,7 @@ void testpart1and2(){
     addOrderLevelList(&MyLevelList2,createLevelCell(1,8));
     displayLevelList(MyLevelList2);
 
-
+    printf("Trouver un élément dans la liste\n");
     t_level_list MyLevelList2N = createSorted2NLevelList(4);
     displayLevelList(MyLevelList2N);
     p_level_cell find= searchValInFirstLevel(MyLevelList2N,1);
@@ -59,6 +60,7 @@ void testpart1and2(){
     else
         printf("NOT FIND");
 
+    printf("Calcul de comparaison entre les deux recherches\n");
     //code pour calculer le temps de chaque recherche.
     int random_value,max;
     p_level_cell findcell;
@@ -112,8 +114,10 @@ void testpart3(){
     insertNewAppointmentforContact(ContactSchedule3);
     t_schedule_cell *contact1 = createScheduleCell(2,ContactSchedule1);
     t_schedule_cell *contact2 = createScheduleCell(2,ContactSchedule2);
+    t_schedule_cell *contact3 = createScheduleCell(2,ContactSchedule3);
     t_schedule_list schedule = createScheduleList();
     InsertCellOrderInScheduleList(schedule,contact1);
     InsertCellOrderInScheduleList(schedule,contact2);
+    InsertCellOrderInScheduleList(schedule,contact3);
 
 }
