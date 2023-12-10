@@ -4,7 +4,6 @@
 
 #ifndef PROJET2_GESTION_AGENDA_SCHEDULE_H
 #define PROJET2_GESTION_AGENDA_SCHEDULE_H
-#include "level_list.h"
 
 typedef struct s_date {
     int day;
@@ -34,7 +33,7 @@ typedef struct s_appointment_cell{
 }t_appointment_cell;
 
 typedef struct s_appointment_list{
-    t_level_cell* head;
+    t_appointment_cell * head;
 }t_appointment_list;
 
 typedef struct s_contact_schedule {

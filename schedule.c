@@ -9,7 +9,7 @@
 #include "level_list.h"
 #include "timer.h"
 
-char* scanString(void){
+char* scanString(void){ //Permet de renvoyer un tableau de caractère de la taille exact de la phrase entrer
     int lenght = 0; //taille logique du tableau
     int max = 100; //taille physique du tableau
     char c;
@@ -17,13 +17,13 @@ char* scanString(void){
 
     if (tab == NULL) // on vérifie que le malloc à bien marcher
     {
-        printf("Memory allocation error !\\n");
+        printf("Erreur d'allocation de mémoire !\\n");
         return NULL;
     }
 
     while((c = getchar()) != '\n'){ //Tant que le caractère n'est pas un retour à la ligne (touche entrée) on continue
         if(lenght == max){ //On vérifie que la taille physique n'est pas atteinte
-            printf("Out of range !\n");
+            printf("Trop de caractère !\n");
             return tab;
         }
         tab[lenght++] = c;
@@ -34,13 +34,13 @@ char* scanString(void){
 
     if (tab == NULL) //On vérifie que le realloc a bien marché
     {
-        printf("Memory reallocation error !\n");
+        printf("Erreur de réallocation de mémoire!\n");
         return NULL;
     }
     return tab;
 }
 
-t_contact createContact(){
+t_contact createContact(){ // Créer et renvoie un contact en demandant le prénom et le nom
     t_contact  newcontact;
     printf("Entrez le prénom et nom du contact en format 'Prénom Nom' : ");
     newcontact.surname_name = scanString();
@@ -48,7 +48,7 @@ t_contact createContact(){
 }
 
 
-void displayContactAppointment(t_contact_schedule contactSchedule){
+void displayContactAppointment(t_contact_schedule contactSchedule){ //Affiche tous les rendez-vous d'un contact
     t_appointment_cell * temp = contactSchedule.appointment->head;
     int i = 1;
     while(temp != NULL){
@@ -58,10 +58,9 @@ void displayContactAppointment(t_contact_schedule contactSchedule){
         printf("Objet : %s \n", temp->appointment.object);
         temp = temp->next;
     }
-
 }
 
-t_date insertDate(){
+t_date insertDate(){ //Demande à l'utilisateur d'entrer une date valide
     t_date date;
     do {
         printf("\nEntrez l'annee du rendez-vous (2024 , 2025 , ...) : ");
@@ -78,7 +77,7 @@ t_date insertDate(){
     return date;
 }
 
-t_hour insertHour(){
+t_hour insertHour(){ //Demande à l'utilisateur d'entrer une heure valide
     t_hour hour;
     do{
         printf("\nEntrez l'heure du rendez-vous (1 , 2 , ...) : ");
@@ -91,7 +90,7 @@ t_hour insertHour(){
     return hour;
 }
 
-t_appointment createAppointment()
+t_appointment createAppointment() //Créer et renvoie un rendez-vous
 {
     t_appointment newAppointment;
     newAppointment.date_appointment=insertDate();
@@ -102,7 +101,7 @@ t_appointment createAppointment()
     return newAppointment;
 }
 
-t_contact_schedule* createContactSchedule()
+t_contact_schedule* createContactSchedule() //Créer et l'agenda propre d'un même contact avec la liste de ces rendez-vous
 {
     t_contact_schedule* newContactSchedule = malloc(sizeof(t_contact_schedule));
     newContactSchedule->contact = createContact();
@@ -111,13 +110,13 @@ t_contact_schedule* createContactSchedule()
     return newContactSchedule;
 }
 
-t_appointment_cell* createAppointmentCell(){
+t_appointment_cell* createAppointmentCell(){ //Créer une cellule d'une liste de rendez-vous
     t_appointment_cell* newAppointmentCell = malloc(sizeof(t_appointment_cell));
     newAppointmentCell->appointment = createAppointment();
     newAppointmentCell->next = NULL;
 }
 
-void insertNewAppointmentforContact(t_contact_schedule* contactSchedule)
+void insertNewAppointmentforContact(t_contact_schedule* contactSchedule) //Permet d'insérer un rendez-vous dans un agenda d'un contact
 {
     t_appointment_cell *newAppointmentCell = createAppointmentCell();
     if (contactSchedule->appointment->head == NULL) {
