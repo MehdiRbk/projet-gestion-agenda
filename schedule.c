@@ -116,12 +116,17 @@ t_appointment_cell* createAppointmentCell(){
     newAppointmentCell->appointment = createAppointment();
     newAppointmentCell->next = NULL;
 }
+
 void insertNewAppointmentforContact(t_contact_schedule* contactSchedule)
 {
-    if(contactSchedule->appointment->head == NULL)
-    {
-        contactSchedule->appointment->head = createAppointmentCell();
-        return;
+    t_appointment_cell *newAppointmentCell = createAppointmentCell();
+    if (contactSchedule->appointment->head == NULL) {
+        contactSchedule->appointment->head = newAppointmentCell;
+    } else {
+        t_appointment_cell *lastAppointmentCell = contactSchedule->appointment->head;
+        while (lastAppointmentCell->next != NULL) {
+            lastAppointmentCell = lastAppointmentCell->next;
+        }
+        lastAppointmentCell->next = newAppointmentCell;
     }
-    t_appointment_cell temp = contactSchedule
 }

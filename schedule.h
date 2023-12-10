@@ -53,7 +53,7 @@ typedef struct s_schedule_list{
     int max_level;
 };
 
-char* scanString(void);
+char * scanString(void);
 t_contact createContact();
 void displayContactAppointment(t_contact_schedule);
 t_date insertDate();
