@@ -114,3 +114,84 @@ t_schedule_cell * createScheduleCell(int nbr_level, t_contact_schedule contactSc
     return newScheduleCell;
 }
 
+void deleteAppointment(t_contact_schedule* contactSchedule, int nbrAppointment)
+{
+    t_appointment_cell *temp = contactSchedule->appointment->head;
+    if(contactSchedule->appointment->head==NULL)
+    {
+        printf("On ne peut pas supprimer un rendez-vous qui n'existe pas");
+        return;
+    }
+    int i = 0;
+    while(i < nbrAppointment-2 && temp!=NULL)
+    {
+        temp = temp->next;
+    }
+    if(temp==NULL)
+    {
+        printf("On ne peut pas supprimer un rendez-vous qui n'existe pas");
+        return;
+    }
+    if(temp == contactSchedule->appointment->head)
+    {
+        contactSchedule->appointment->head = temp->next;
+        temp->next = NULL;
+        free(temp);
+    }
+    t_appointment_cell *suppCell = temp->next;
+    temp->next=suppCell->next;
+    suppCell->next = NULL;
+    free(suppCell);
+}
+
+char* createPseudo(char* str) {
+    if (str == NULL || *str == '\0') {
+        return NULL;
+    }
+    // Convertir les minuscules en majuscules
+    for (int i = 0; str[i] != '\0'; ++i) {
+        str[i] = toupper((unsigned char)str[i]);
+    }
+    // Trouver la position de l'espace
+    char* spacePos = strchr(str, ' ');
+    if (spacePos != NULL) {
+        // Calculer la taille des deux parties
+        size_t len1 = spacePos - str;
+        size_t len2 = strlen(spacePos + 1);
+        // Allouer de la mémoire pour le nouveau pseudo
+        char* newPseudo = (char*)malloc((len1 + len2 + 2) * sizeof(char));
+        if (newPseudo == NULL) {
+            printf("Erreur d'allocation de memoire!\n");
+            return NULL;
+        }
+        // Copier la première partie
+        strncpy(newPseudo, str, len1);
+        // Ajouter le séparateur
+        newPseudo[len1] = '_';
+        // Copier la deuxième partie
+        strncpy(newPseudo + len1 + 1, spacePos + 1, len2);
+        // Terminer la chaîne de caractères
+        newPseudo[len1 + len2 + 1] = '\0';
+        return newPseudo;
+    }
+    return str;
+}
+
+void InsertCellOrderInScheduleList(t_schedule_list myScheduleList,t_schedule_cell *MyScheduleCell) {
+    if (myScheduleList.head == NULL) {
+        myScheduleList.head = MyScheduleCell;
+        return;
+    }
+
+    t_schedule_cell *temp, *prev;
+    temp = myScheduleList.head;
+
+    while (temp != NULL && strcmp(temp->pseudo, MyScheduleCell->pseudo) < 0) {
+        prev = temp;
+        temp = temp->next[0];
+    }
+    MyScheduleCell->next[0] = temp;
+    prev->next[0] = MyScheduleCell;
+}
+
+
