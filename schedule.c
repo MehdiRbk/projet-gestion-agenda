@@ -119,7 +119,7 @@ t_appointment_cell* createAppointmentCell(){ //Créer une cellule d'une liste de
     newAppointmentCell->next = NULL;
 }
 
-void insertNewAppointmentforContact(t_contact_schedule* contactSchedule) //Permet d'insérer un rendez-vous dans un agenda d'un contact
+void insertNewAppointmentforContact(t_contact_schedule* contactSchedule) //Permet d'insérer un rendez-vous dans un agenda d'un contact comme une liste chaîné simple une insertion en queue
 {
     t_appointment_cell *newAppointmentCell = createAppointmentCell();
     if (contactSchedule->appointment->head == NULL) {
@@ -132,3 +132,14 @@ void insertNewAppointmentforContact(t_contact_schedule* contactSchedule) //Perme
         lastAppointmentCell->next = newAppointmentCell;
     }
 }
+
+t_schedule_cell * createScheduleCell(int level, t_contact_schedule contactSchedule)
+{
+    t_schedule_cell* newScheduleCell = malloc(sizeof(t_schedule_cell));
+    newScheduleCell->level = level;
+    newScheduleCell->next = NULL;
+    newScheduleCell->contactSchedule = contactSchedule;
+    newScheduleCell->pseudo =NULL;
+    return newScheduleCell;
+}
+

@@ -44,6 +44,7 @@ typedef struct s_contact_schedule {
 typedef struct s_schedule_cell{
     char* pseudo;
     int level;
+    t_contact_schedule contactSchedule;
     struct s_schedule_cell* next[];
 }t_schedule_cell;
 
@@ -61,5 +62,6 @@ t_appointment createAppointment();
 t_contact_schedule* createContactSchedule();
 t_appointment_cell* createAppointmentCell();
 void insertNewAppointmentforContact(t_contact_schedule* contactSchedule);
+t_schedule_cell * createScheduleCell(int level, t_contact_schedule contactSchedule);
 
 #endif //PROJET2_GESTION_AGENDA_SCHEDULE_H
