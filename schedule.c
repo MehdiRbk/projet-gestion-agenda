@@ -46,3 +46,33 @@ t_contact* createContact(){
     newcontact->surname_name = scanString();
     return newcontact;
 }
+
+
+void displayContact(t_contact contact){
+    printf("Contact : %s", contact.surname_name);
+}
+
+
+
+t_date createDate(){
+    t_date date;
+    int day, month, year;
+    do {
+        printf("\nEntrez l'annee du rendez-vous (2024 , 2025 , ...) : ");
+        year =;
+    }while(year<0);
+    do {
+        printf("\nEntrez le mois du rendez-vous (1 , 2 , ...) : ");
+        month=;
+    }while(month<1 || month>12);
+    do {
+        printf("\nEntrez le jour du rendez-vous (1 , 2 , ...) : ");
+        day=;
+    }while((day<1) || (day>31) || ((year%4==0) && (day>29) && (month==2)) || ((year%4!=0) && (day>28) && (month==2)));
+    date.year=year;
+    date.month=month;
+    date.day=day;
+    return date;
+}
+
+

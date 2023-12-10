@@ -56,4 +56,6 @@ typedef struct s_schedule_list{
 char *scanString(void);
 void display_appointment();
 t_contact* createContact();
+void displayContact(t_contact);
+t_date createDate();
 #endif //PROJET2_GESTION_AGENDA_SCHEDULE_H
