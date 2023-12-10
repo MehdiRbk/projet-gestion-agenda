@@ -5,10 +5,11 @@
 #include "timer.h"
 
 int main() {
-    /*
+/*
+    //Ajout en tête de liste
     t_level_list MyLevelList = createLevelList(5);
     displayLevelList(MyLevelList);
-    //Ajout en tête de liste
+
     addHeadLevelList(&MyLevelList,createLevelCell(18,3));
     displayLevelList(MyLevelList);
 
@@ -68,7 +69,7 @@ int main() {
         test_list= createSorted2NLevelList(level);
         startTimer();
         max = (int) pow(2,level)-1;
-        for (int i = 0; i< 100000;i++)
+        for (int i = 0; i< 10000;i++)
         {
             random_value = (int) rand()%( max+1 );
             findcell = searchValInFirstLevel(test_list,random_value);
@@ -77,7 +78,7 @@ int main() {
         displayTime();
         time_lvl0 = getTimeAsString(); // fonction du module timer
         startTimer();
-        for (int i = 0; i< 100000;i++)
+        for (int i = 0; i< 10000;i++)
         {
             random_value = (int) rand()%( max+1 );
             findcell = searchValInList(test_list,random_value);
