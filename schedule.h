@@ -18,8 +18,7 @@ typedef struct s_hour{
 }t_hour;
 
 typedef struct s_contact{
-    char* surname;
-    char* name;
+    char* surname_name;
 }t_contact;
 
 typedef struct s_appointment{
@@ -31,7 +30,7 @@ typedef struct s_appointment{
 
 typedef struct s_appointment_cell{
     t_appointment appointment;
-    struct s_appointment_list* next[];
+    struct s_appointment_list* next;
 }t_appointment_cell;
 
 typedef struct s_appointment_list{
@@ -41,9 +40,20 @@ typedef struct s_appointment_list{
 typedef struct s_schedule {
     t_contact contact;
     t_appointment_list *appointment;
-}t_schedule;
+}t_enter_schedule;
+
+typedef struct s_schedule_cell{
+    char* pseudo;
+    int level;
+    struct s_schedule_cell* next[];
+}t_schedule_cell;
+
+typedef struct s_schedule_list{
+    t_schedule_cell* head;
+    int max_level;
+};
 
 char *scanString(void);
 void display_appointment();
-t_contact* creerContact();
+t_contact* createContact();
 #endif //PROJET2_GESTION_AGENDA_SCHEDULE_H

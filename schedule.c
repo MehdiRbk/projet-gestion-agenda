@@ -40,3 +40,9 @@ char* scanString(void){
     return tab;
 }
 
+t_contact* createContact(){
+    t_contact * newcontact = malloc(sizeof(t_contact));
+    printf("Entrez le prénom et nom du contact en format 'Prénom Nom' : ");
+    newcontact->surname_name = scanString();
+    return newcontact;
+}
