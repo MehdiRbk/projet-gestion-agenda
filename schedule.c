@@ -6,8 +6,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include "level_list.h"
-#include "timer.h"
+#include <ctype.h>
+#include <string.h>
+
 
 char* scanString(void){ //Permet de renvoyer un tableau de caractère de la taille exact de la phrase entrer
     int lenght = 0; //taille logique du tableau
@@ -61,36 +62,6 @@ void displayContactAppointment(t_contact_schedule contactSchedule){ //Affiche to
     }
 }
 
-t_date insertDate(){ //Demande à l'utilisateur d'entrer une date valide
-    t_date date;
-    do {
-        printf("Entrez l'annee du rendez-vous: \n");
-        scanf("%d",&date.year);
-    }while(date.year<2023);
-    do {
-        printf("Entrez le mois du rendez-vous: \n");
-        scanf("%d",&date.month);
-    }while(date.month<1 || date.month>12);
-    do {
-        printf("Entrez le jour du rendez-vous  : \n");
-        scanf("%d",&date.day);
-    }while((date.day<1) || (date.day>31) || ((date.year%4==0) && (date.day>29) && (date.month==2)) || ((date.year%4!=0) && (date.day>28) && (date.month==2)));
-    return date;
-}
-
-t_hour insertHour(){ //Demande à l'utilisateur d'entrer une heure valide
-    t_hour hour;
-    do{
-        printf("Entrez l'heure: \n");
-        scanf("%d",&hour.hour);
-    }while(hour.hour < 0 || hour.hour > 24);
-    do{
-        printf("Entrez les minutes: \n");
-        scanf("%d",&hour.minute);
-    }while(hour.minute < 0 || hour.minute > 60);
-    return hour;
-}
-
 t_appointment createAppointment() //Créer et renvoie un rendez-vous
 {
     t_appointment newAppointment;
@@ -133,13 +104,13 @@ void insertNewAppointmentforContact(t_contact_schedule* contactSchedule) //Perme
     }
 }
 
-t_schedule_cell * createScheduleCell(int level, t_contact_schedule contactSchedule)
+t_schedule_cell * createScheduleCell(int nbr_level, t_contact_schedule contactSchedule)
 {
     t_schedule_cell* newScheduleCell = malloc(sizeof(t_schedule_cell));
-    newScheduleCell->level = level;
-    newScheduleCell->next = NULL;
+    newScheduleCell->level = nbr_level;
+    *(newScheduleCell)->next = malloc(nbr_level*sizeof(t_schedule_cell*));
     newScheduleCell->contactSchedule = contactSchedule;
-    newScheduleCell->pseudo =NULL;
+    newScheduleCell->pseudo = createPseudo(contactSchedule.contact.surname_name);
     return newScheduleCell;
 }
 

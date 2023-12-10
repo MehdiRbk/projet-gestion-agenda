@@ -6,6 +6,7 @@
 #define PROJET2_GESTION_AGENDA_TEST_H
 
 
-void test();
+void testpart1and2();
+void testpart3();
 
 #endif //PROJET2_GESTION_AGENDA_TEST_H

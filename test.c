@@ -8,8 +8,9 @@
 #include <math.h>
 #include "level_list.h"
 #include "timer.h"
+#import "schedule.h"
 
-void test(){
+void testpart1and2(){
     t_level_list MyLevelList = createLevelList(5);
     displayLevelList(MyLevelList);
 
@@ -93,4 +94,14 @@ void test(){
         level++;
     }
     fclose(log_file);
+}
+
+void testpart3(){
+    t_contact_schedule* ContactSchedule1 = createContactSchedule();
+    insertNewAppointmentforContact(ContactSchedule1);
+    insertNewAppointmentforContact(ContactSchedule1);
+    insertNewAppointmentforContact(ContactSchedule1);
+    printf("Suppression du rendez-vous numéro 2");
+    deleteAppointment(ContactSchedule1,1);
+    printf("Création d'un nouveau contact");
 }

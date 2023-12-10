@@ -4,11 +4,21 @@
 #include "level_list.h"
 #include "timer.h"
 #include "schedule.h"
+#include "test.h"
+
 int main() {
-    t_contact_schedule *marco = createContactSchedule();
-    insertNewAppointmentforContact(marco);
-    displayContactAppointment(*marco);
-    insertNewAppointmentforContact(marco);
-    displayContactAppointment(*marco);
+    int start=1;
+    while(start)
+    {
+        printf("Choix test :\n");
+        printf("1 - test PARTIE 1 et 2\n");
+        printf("2 - test PARTIE 3\n");
+        printf("0 - quit\n");
+        scanf("%d",&start);
+        if (start ==2){
+            testpart1and2();
+        }
+        if (choix)
+    }
     return 0;
 }

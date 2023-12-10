@@ -4,17 +4,7 @@
 
 #ifndef PROJET2_GESTION_AGENDA_SCHEDULE_H
 #define PROJET2_GESTION_AGENDA_SCHEDULE_H
-
-typedef struct s_date {
-    int day;
-    int month;
-    int year;
-}t_date;
-
-typedef struct s_hour{
-    int hour;
-    int minute;
-}t_hour;
+#include "time.h"
 
 typedef struct s_contact{
     char* surname_name;
