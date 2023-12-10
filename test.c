@@ -105,13 +105,11 @@ void testpart3(){
     insertNewAppointmentforContact(ContactSchedule1);
     displayContactAppointment(*ContactSchedule1);
     printf("Suppression du rendez-vous numéro 2\n");
-    deleteAppointment(ContactSchedule1,2);
-    printf("Création d'un nouveau contact");
+    //deleteAppointment(ContactSchedule1,2);
+    printf("Création d'un nouveau contact\n");
     t_contact_schedule* ContactSchedule2 = createContactSchedule();
-    insertNewAppointmentforContact(ContactSchedule2);
     printf("Création d'un nouveau contact\n");
     t_contact_schedule* ContactSchedule3 = createContactSchedule();
-    insertNewAppointmentforContact(ContactSchedule3);
     t_schedule_cell *contact1 = createScheduleCell(2,ContactSchedule1);
     t_schedule_cell *contact2 = createScheduleCell(2,ContactSchedule2);
     t_schedule_cell *contact3 = createScheduleCell(2,ContactSchedule3);
