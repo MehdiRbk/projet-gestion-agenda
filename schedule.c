@@ -118,9 +118,10 @@ t_appointment_cell* createAppointmentCell(){
 }
 void insertNewAppointmentforContact(t_contact_schedule* contactSchedule)
 {
-    t
     if(contactSchedule->appointment->head == NULL)
     {
-
+        contactSchedule->appointment->head = createAppointmentCell();
+        return;
     }
+    t_appointment_cell temp = contactSchedule
 }
