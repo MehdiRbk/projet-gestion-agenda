@@ -104,13 +104,13 @@ void insertNewAppointmentforContact(t_contact_schedule* contactSchedule) //Perme
     }
 }
 
-t_schedule_cell * createScheduleCell(int nbr_level, t_contact_schedule contactSchedule)
+t_schedule_cell * createScheduleCell(int nbr_level, t_contact_schedule *contactSchedule)
 {
     t_schedule_cell* newScheduleCell = malloc(sizeof(t_schedule_cell));
     newScheduleCell->level = nbr_level;
     *(newScheduleCell)->next = malloc(nbr_level*sizeof(t_schedule_cell*));
-    newScheduleCell->contactSchedule = contactSchedule;
-    newScheduleCell->pseudo = createPseudo(contactSchedule.contact.surname_name);
+    newScheduleCell->contactSchedule = *contactSchedule;
+    newScheduleCell->pseudo = createPseudo(contactSchedule->contact.surname_name);
     return newScheduleCell;
 }
 
@@ -194,4 +194,9 @@ void InsertCellOrderInScheduleList(t_schedule_list myScheduleList,t_schedule_cel
     prev->next[0] = MyScheduleCell;
 }
 
-
+t_schedule_list createScheduleList()
+{
+    t_schedule_list list;
+    list.head =NULL;
+    list.max_level=4;
+}

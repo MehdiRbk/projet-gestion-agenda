@@ -53,6 +53,8 @@ t_appointment createAppointment();
 t_contact_schedule* createContactSchedule();
 t_appointment_cell* createAppointmentCell();
 void insertNewAppointmentforContact(t_contact_schedule* contactSchedule);
-t_schedule_cell * createScheduleCell(int level, t_contact_schedule contactSchedule);
-void InsertOrderSchedule(t_schedule_list myScheduleList);
+t_schedule_cell * createScheduleCell(int level, t_contact_schedule *contactSchedule);
+t_schedule_list createScheduleList();
+void InsertCellOrderInScheduleList(t_schedule_list myScheduleList,t_schedule_cell *MyScheduleCell);
+
 #endif //PROJET2_GESTION_AGENDA_SCHEDULE_H
